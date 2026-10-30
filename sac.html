@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAC CBLOW · SAV (Serviço de Atendimento ao Viewer)</title>
+
+  <!-- Google Fonts: Chakra Petch (Esports) & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/sac.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>" />
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand">
+        <span class="brand-badge" style="background: var(--sav-red); color: #fff; box-shadow: 0 0 14px var(--sav-red-glow);">SAV</span>
+        <div>
+          <h1 class="brand-title">SAC CBLOW <span class="brand-sub">Ouvidoria & Central de Reclamações</span></h1>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="badge-live-pulse">
+          <span class="pulse-dot"></span>
+          <span>Ouvidoria Online</span>
+        </div>
+
+        <button id="btnSoundToggle" class="btn btn-secondary btn-sm" title="Ligar ou desligar áudio do Yoda Fon">
+          <span>🔊 Fon: ON</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="sav-hero">
+    <h2 class="sav-hero-title">Serviço de Atendimento ao Viewer (SAV)</h2>
+    <p class="sav-hero-desc">
+      Bem-vindo ao canal oficial de manifestação do torcedor e do chat do CBLOW. quer reclamar sobre algo que aconteceu na live? Discorda das decisões do Yoda na live? Registre seu protesto formal abaixo.
+    </p>
+    <div class="sav-hero-quote">
+      💬 <strong>DIRETIVA SUPREMA DO DIRETOR GERAL YODA:</strong> 
+      <em>Amanhã 12h o bronze vai responder todas</em>
+    </div>
+  </section>
+
+  <!-- KPI Cards (3 Cards Atualizados) -->
+  <div class="sav-stats-bar">
+    <div class="stat-box">
+      <span class="stat-label">Reclamações Registradas</span>
+      <span id="countRegistered" class="stat-val">48.914</span>
+      <span class="stat-sub">🔥 Incrementando em tempo real</span>
+    </div>
+
+    <div class="stat-box stat-danger">
+      <span class="stat-label">Respondidas pelo Bronziocre</span>
+      <span id="countBronziocre" class="stat-val" style="color: var(--sav-red);">48.914</span>
+      <span class="stat-sub">100% despachadas para o canal do YouTube</span>
+    </div>
+
+    <div class="stat-box stat-gold">
+      <span class="stat-label">Horário de resposta</span>
+      <span class="stat-val" style="color: var(--sav-gold); font-size: 1.85rem;">Amanhã 12h</span>
+      <span class="stat-sub">Sem falta (ou no próximo vídeo)</span>
+    </div>
+  </div>
+
+  <!-- Main Content Layout -->
+  <main class="sav-layout">
+
+    <!-- Left Column: Form OR Cooldown Screen -->
+    <div class="sav-interactive-column">
+
+      <!-- 1. The Active Complaint Form Panel -->
+      <div id="savFormPanel" class="sav-panel">
+        <div class="panel-header-badge">
+          <div>
+            <span class="panel-title">📝 Abrir Chamado de Contestação</span>
+            <div class="panel-desc" style="margin-bottom:0;">Preencha todos os campos para submeter sua reclamação à moderação.</div>
+          </div>
+          <span id="protocolDisplay" class="protocol-chip">Ticket: 849201</span>
+        </div>
+
+        <form id="formComplaint" onsubmit="return false;">
+          <!-- Nick na KICK -->
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label for="userNick" style="display:block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--color-bone);">
+              Nick na KICK *
+            </label>
+            <input type="text" id="userNick" class="form-input" placeholder="RAMMUS#TAUNT" required />
+          </div>
+
+          <!-- Título da reclamação -->
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label for="complaintTitle" style="display:block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--color-bone);">
+              Título da reclamação *
+            </label>
+            <input type="text" id="complaintTitle" class="form-input" placeholder="Ex: Yoda me mutou no chat / Vô corvo sem smite..." required />
+          </div>
+
+          <!-- Eu to tiltado? (Slider) -->
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label style="display:block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--color-bone);">
+              Eu to tiltado?
+            </label>
+            <div class="tilt-range-wrap">
+              <input type="range" id="tiltSlider" class="tilt-slider" min="0" max="100" value="70" />
+              <div class="tilt-indicator">
+                <span>0%</span>
+                <span id="tiltCurrVal" class="tilt-curr-val">70% — 🚨 Spamando CPI 🚨 no chat</span>
+                <span>100%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Complaint Description Box -->
+          <div class="form-group" style="margin-bottom: 0.75rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.4rem;">
+              <label for="complaintText" style="font-size: 0.85rem; font-weight: 600; color: var(--color-bone);">
+                Detalhes do seu Desabafo *
+              </label>
+              <span style="font-size: 0.75rem; color: var(--text-muted);"><span id="charCount">0</span> caracteres</span>
+            </div>
+            <textarea id="complaintText" class="form-input" rows="4" style="resize: vertical; font-family: var(--font-body);" placeholder="Descreva aqui sua dor com riqueza de detalhes, indignação e choro..."></textarea>
+          </div>
+
+          <!-- Checkbox Confirmation -->
+          <label class="checkbox-wrap">
+            <input type="checkbox" id="chkAgreeTerms" checked />
+            <span>
+              Declaro estar ciente de que o <strong>Yoda tem sempre razão</strong> e que, caso eu erre o <strong>Teste Cognitivo do SAV</strong>, receberei uma penalidade de <strong>24 horas de cooldown</strong> sem poder abrir novos chamados.
+            </span>
+          </label>
+
+          <!-- Submit Button -->
+          <button type="submit" id="btnSubmitComplaint" class="btn-submit-sav">
+            <span>📩 Registrar Reclamação no SAV</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- 2. The Locked Cooldown Screen (Shown when penalized) -->
+      <div id="savCooldownScreen" class="cooldown-screen" style="display: none;">
+        <div class="cooldown-alert-icon">🚨</div>
+        <h3 class="cooldown-title">Acesso Temporariamente Suspenso!</h3>
+        <p class="cooldown-subtitle">
+          Você foi reprovado no Teste de Aptidão Cognitiva do SAV. Seu IP, seu Nick na KICK e seus dados foram colocados em quarentena disciplinar por excesso de choradeira.
+        </p>
+
+        <!-- Digital Timer -->
+        <div class="cooldown-timer-box">
+          <div class="timer-label">Tempo Restante de Cooldown Obrigatório:</div>
+          <div id="timerDigits" class="timer-digits">23:59:59</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.35rem;">
+            Tentativas de recarregar a página não resetam este relógio.
+          </div>
+        </div>
+
+        <!-- The Bronziocre Escape Hatch (The Joke Climax) -->
+        <div class="bronziocre-card">
+          <span class="bronziocre-card-badge">▶️ Diretiva Oficial do Yoda</span>
+          <h4 class="bronziocre-card-title">Não quer esperar 24 horas para ser atendido?</h4>
+          <p class="bronziocre-card-quote">
+            "Como o mestre Yoda sempre orienta na live: 
+            <strong>'Se achou ruim, vai lá no último vídeo do Bronziocre deixando um comentário!'</strong>"
+          </p>
+
+          <a id="btnBronziocreLink" href="https://www.youtube.com/@bronziocre/videos" target="_blank" rel="noopener noreferrer" class="btn-bronziocre">
+            <span>🔴 Ir Reclamar no Último Vídeo do Bronziocre</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/>
+            </svg>
+          </a>
+
+          <div>
+            <button id="btnCopyComplaint" class="btn-copy-complaint" title="Copiar o texto do seu desabafo para colar no YouTube">
+              <span>📋 Copiar meu desabafo formatado para colar nos comentários</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Column: Últimas solicitações (Mural) -->
+    <aside class="sav-mural-column">
+      <div class="mural-panel">
+        <div class="mural-header">
+          <div class="mural-title">
+            <span>📜 Últimas solicitações</span>
+          </div>
+          <span style="font-size: 0.75rem; color: var(--color-copper); font-weight: 700;">● AO VIVO</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Chamados recentes registrados pelo chat da KICK:
+        </p>
+        <div id="muralFeed" class="mural-feed">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Challenge Modal Backdrop (Bulletproof Visibility) -->
+  <div id="modalChallenge" class="sav-modal-backdrop">
+    <div id="challengeModalBody" style="width: 100%; display: flex; justify-content: center; align-items: center;">
+      <!-- Content dynamically injected by JS -->
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Script -->
+  <script src="js/sac.js"></script>
+</body>
+</html>

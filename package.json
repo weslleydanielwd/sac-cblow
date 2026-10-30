@@ -1,0 +1,18 @@
+{
+  "name": "sac-cblow",
+  "version": "1.0.0",
+  "description": "SAC CBLOW / SAV - Serviço de Atendimento ao Viewer da live do Yoda",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "cblow",
+    "yoda",
+    "bronziocre",
+    "sav",
+    "sac"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}
