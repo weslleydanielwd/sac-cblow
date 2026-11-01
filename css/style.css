@@ -138,6 +138,26 @@ body {
   flex-wrap: wrap;
 }
 
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.header-nav a {
+  color: var(--color-dust);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.header-nav a:hover {
+  color: var(--color-copper);
+}
+
 .team-selector-wrap {
   display: flex;
   align-items: center;

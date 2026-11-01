@@ -197,9 +197,13 @@
     if (elBtnSoundToggle) {
       updateSoundButtonUI();
       elBtnSoundToggle.addEventListener('click', () => {
+        const wasEnabled = isSoundEnabled;
         isSoundEnabled = !isSoundEnabled;
         localStorage.setItem(STORAGE_KEY_SOUND, isSoundEnabled);
         updateSoundButtonUI();
+        if (!wasEnabled && isSoundEnabled) {
+          playYodaFonAudio();
+        }
       });
     }
 
