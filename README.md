@@ -11,7 +11,7 @@ Página de humor / gag inspirada nas transmissões do **Yoda**:
 
 - [📺 Canal do Bronziocre](https://www.youtube.com/@bronziocre/videos)
 - [🎮 Canal do Yoda](https://www.youtube.com/@YodaSL/videos)
-- [🌐 Site Oficial do CBLOW](https://cblow.xyz/)
+- [🌐 Site CBLOW](https://cblow.xyz/)
 - [💜 Ajude o YoGamesDoBem](https://pixgg.com/yogamersdobem)
 
 ---
